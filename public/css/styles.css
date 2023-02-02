@@ -1,6 +1,208 @@
 /******* Change Box Model ***************/
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 *,
 *:before,
 *:after {
   box-sizing: border-box;
 }
+
+body {
+  padding: 1em;
+  background-color: white;
+}
+
+header {
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto";
+  display: flex;
+  justify-content: space-between;
+}
+
+.accountLink a {
+  text-decoration: none;
+  color: black;
+  text-transform: uppercase;
+}
+
+.homeLink {
+  text-decoration: none;
+  color: black;
+  font-size: 30px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  font-family: "Roboto";
+  background-color: black;
+  color: white;
+  padding: 1em;
+}
+
+main {
+  font-family: Roboto;
+}
+
+.topContent {
+  margin-bottom: 0;
+  height: 250px;
+  width: 300px;
+  margin: auto;
+}
+
+#delorean {
+  width: 100%;
+  z-index: 0;
+  margin-top: 25px;
+  margin-left: 60px;
+  padding: 1em;
+}
+
+.callToAction {
+  background-color: white;
+  z-index: 1;
+  opacity: .8;
+  width: 125px;
+  position: relative;
+  bottom: 175px;
+  left:25px;
+}
+
+.callToAction ul {
+  padding-inline: 0;
+  margin-bottom: 5px;
+  margin-top: 3px;
+  color: rgb(2, 148, 197);
+  font-weight: bold;
+}
+
+.callToAction h3 {
+  margin: 0;
+  color: rgb(2, 148, 197);
+}
+
+.callToAction ul li {
+  list-style: none;
+}
+
+.callToAction button {
+  color: black;
+  background-color: rgb(2, 148, 197);
+  border: 1px;
+  padding: 10px;
+  width: 100px;
+  font-size: 15px;
+  opacity: 1;
+  margin-top: 0;
+}
+
+.reviews {
+  text-align: start
+}
+
+.reviews ul {
+  padding-inline-start: 0;
+  height: 100%;
+  align-items: center;
+}
+
+.reviews ul li {
+  padding: 10px;
+  padding-inline-start: 0;
+  font-size: 17px;
+}
+
+.upgrades ul li {
+  text-align: center;
+  list-style: none;
+  margin-top: 10px;
+}
+
+.upgrades ul {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding-inline: 0;
+  grid-gap: 10px;
+}
+
+.upgrade {
+  background-color: rgb(2, 148, 197);
+  border: solid 1px;
+  width: 150px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.outerUpgrade {
+  width: 150px;
+  height: 110px;
+}
+
+
+.bottomContent {
+  width: 300px;
+  margin: auto;
+}
+
+@media screen and (min-width: 750px) {
+
+  #wrapper {
+    width: 80%;
+    margin: auto;
+    background-color: white;
+    padding: 1em;
+    border: solid 5px;
+    border-color: rgb(2, 148, 197);
+    border-radius: 10px;
+  }
+
+  body {
+    background-image: url(/images/site/checkerboard.jpg)
+  }
+
+  .bottomContent {
+    width: 90%;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 3em;
+  }
+
+  .reviews {
+    grid-column: 2/3;
+    grid-row: 1;
+  }
+  .upgrades {
+    grid-column: 1/2;
+    grid-row: 1;
+  }
+
+  .topContent {
+    width: 90%;
+    margin-bottom: 3em;
+  }
+
+  #delorean {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .callToAction ul {
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+
+  .callToAction {
+    bottom: 200px;
+    left: 50px;
+  }
+}
+
+
