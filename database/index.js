@@ -16,7 +16,7 @@ if (process.env.NODE_ENV == "development") {
         },
     })
 } else {
-    pool = new pool ({
+    pool = new Pool ({
         connectionString: process.env.DATABASE_URL,
     })
 }
