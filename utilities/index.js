@@ -30,4 +30,14 @@ Util.getNav = async function(req, res, next) {
     return nav
 }
 
+
+Util.getCarDetails = async function(req, res, next) {
+    let data = await invModel.getVehiclesByInvId();
+    h1 = "<h1>"
+    data.rows.forEach((row) => {
+        h1 += "Hello</h1>"
+    })
+    return h1;
+}
+
 module.exports = Util
