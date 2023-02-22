@@ -1,0 +1,39 @@
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else { res.redirect('/') } %> <% if (message) { %>
+<p class="notice"><%= message %></p>
+<% } %>
+
+<form action="vehicleAdded" method="post">
+  <label>Classification</label>
+  <%- menu %>
+  <label>Make</label>
+  <input name="inv_make" type="text" required />
+  <label>Model</label>
+  <input name="inv_model" type="text" required />
+  <label>Year</label>
+  <input name="inv_year" type="text" required />
+  <label>Vehicle Description</label>
+  <input name="inv_description" type="text" required />
+  <label>Image path</label>
+  <input
+    name="inv_image"
+    type="text"
+    value="/images/vehicles/no-image.png"
+    required
+  />
+  <label>Thumbnail path</label>
+  <input
+    name="inv_thumbnail"
+    type="text"
+    value="/images/vehicles/no-image-tn.png"
+    required
+  />
+  <label>Price</label>
+  <input name="inv_price" type="text" required />
+  <label>Miles</label>
+  <input name="inv_miles" type="text" required />
+  <label>Color</label>
+  <input name="in_color" type="text" required />
+  <input type="submit" class="submit" />
+</form>

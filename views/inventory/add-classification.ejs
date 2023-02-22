@@ -1,0 +1,14 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else { res.redirect('/') } %> 
+
+    <% if (message) { %>
+    <p class="notice"><%= message %></p>
+    <% } %>
+
+<form action="classificationAdded" method="post">
+    <p>The new classification name must not contain spaces or special characters</p>
+    <label>Classification Name</label>
+    <input name="classification_name" type="text" required>
+    <input type="submit" class="submit">
+</form>

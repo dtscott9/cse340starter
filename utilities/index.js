@@ -40,4 +40,19 @@ Util.getCarDetails = async function(req, res, next) {
     return h1;
 }
 
+Util.buildSelect = function(data) {
+    let select = "<select name='classification_id'>"
+    data.rows.forEach((row) => {
+        select+= `<option value="${row.classification_id}">${row.classification_name}</option>`
+    })
+    select +="</select>"
+    return select
+}
+
+Util.getSelect = async function(req, res, next) {
+    let data = await invModel.getClassifications()
+    select = Util.buildSelect(data)
+    return select
+}
+
 module.exports = Util
