@@ -55,4 +55,20 @@ Util.getSelect = async function(req, res, next) {
     return select
 }
 
+Util.stickySelect = async function(classification_id) {
+    let data = await invModel.getClassifications()
+    let select = "<select name='classification_id'>"
+    data.rows.forEach((row) => {
+        select+= `<option value="${row.classification_id}"`;
+        if (row.classification_id == classification_id) {
+            select += `selected>${row.classification_name}</option>`
+        }
+        else {
+            select += `>${row.classification_name}</option>`
+        }
+    })
+    select +="</select>"
+    return select
+}
+
 module.exports = Util

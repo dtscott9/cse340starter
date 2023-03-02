@@ -234,6 +234,23 @@ form label{
   width: 100px;
 }
 
+input, textarea {
+  width: 55%;
+  background-color: white;
+}
+
+input:invalid {
+  background-color: rgb(252, 170, 170);
+}
+
+input:valid {
+  background-color: rgb(186, 243, 186);
+}
+
+input[type=submit] {
+  background-color: white;
+}
+
 .management_options{
   display: grid;
   grid-template-columns: auto;
@@ -245,6 +262,11 @@ form label{
 
 select {
   width: 45%;
+}
+
+#passwdRules {
+  font-size: 12px;
+  color: rgb(251, 199, 199);
 }
 
 @media screen and (min-width: 750px) {

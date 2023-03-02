@@ -48,6 +48,7 @@ invCont.buildClassificationForm = async function (req, res, next) {
     title: "Add Classification",
     nav,
     message: null,
+    errors: null
   });
 };
 
@@ -86,6 +87,7 @@ invCont.buildVehicleForm = async function (req, res, next) {
     nav,
     menu,
     message: null,
+    errors: null
   });
 };
 

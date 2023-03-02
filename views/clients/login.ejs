@@ -1,17 +1,24 @@
 <% if (title) { %>
-    <h1><%= title %></h1>
-    <% } else { res.redirect('/') } %> 
+<h1><%= title %></h1>
+<% } else { res.redirect('/') } %> <% if (message) { %>
+<p class="notice"><%= message %></p>
+<% } %>
 
-    <% if (message) { %>
-    <p class="notice"><%= message %></p>
-    <% } %>
-
-
-    <form class="login" action="#" method="post">
-        <label for="client_username">Username</label>
-        <input type="text" name="client_username" id="client_user" required>
-        <label for="client_password"  id="">Password</label>
-        <input type="text" name="client_password" id="client_password" required>
-        <input class="submit" type="submit">
-        <p>No account? <a href="/client/registration">Sign-up</a></p>
-    </form>
+<form class="login" action="#" method="post">
+  <label for="client_user">Username</label>
+  <input type="text" name="client_username" id="client_user" required />
+  <label for="client_password" id="client_password">Password</label>
+  <div id="passwdRules">
+    Please include at least 12 characters, with one uppercase character, 1
+    special character, and 1 nubmer
+  </div>
+  <input
+    type="text"
+    name="client_password"
+    id="client_password"
+    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+    required
+  />
+  <input class="submit" type="submit" />
+  <p>No account? <a href="/client/registration">Sign-up</a></p>
+</form>

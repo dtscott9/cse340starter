@@ -1,19 +1,33 @@
-<% if (title) { %>
-    <h1><%= title %></h1>
-    <% } else { res.redirect('/') } %> 
+<% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %> <% if (title) { %>
+<h1><%= title %></h1>
+<% } else { res.redirect('/') } %> <% if (message) { %>
+<p class="notice"><%= message %></p>
+<% } %>
 
-    <% if (message) { %>
-    <p class="notice"><%= message %></p>
-    <% } %>
-
-    <form class="login" action="/client/register" method="post">
-        <label for="fname">First name</label>
-        <input name="client_firstname" type="text">
-        <label>Last name</label>
-        <input name="client_lastname" type="text">
-        <label for="email">Email address</label>
-        <input type="email" name="client_email">
-        <label for="password">Password</label>
-        <input name="client_password" type="text">
-        <input class="submit" type="submit">
-    </form>
+<form class="login" action="/client/register" method="post">
+  <label for="client_firstname">First name</label>
+  <input name="client_firstname" id="client_firstname" type="text" required value="<%= locals.client_firstname %>" />
+  <label for="client_lastname">Last name</label>
+  <input name="client_lastname" id="client_lastname" type="text" required value="<%= locals.client_lastname %>" />
+  <label for="client_email">Email address</label>
+  <input type="email" id="client_email" name="client_email" required value="<%= locals.client_email %>"/>
+  <label for="client_password">Password</label>
+  <div id="passwdRules">
+    Please include at least 12 characters, with one uppercase character, 1
+    special character, and 1 nubmer
+  </div>
+  <input
+    name="client_password"
+    id="client_password"
+    type="password"
+    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+    required
+  />
+  <input class="submit" type="submit" />
+</form>
