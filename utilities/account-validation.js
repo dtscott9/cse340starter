@@ -49,6 +49,27 @@ validate.registationRules = () => {
   ];
 };
 
+validate.loginRules = () => {
+  return [
+    body("client_email")
+      .trim()
+      .isEmail()
+      .normalizeEmail()
+      .withMessage("Please enter a valid email"),
+    
+      body("client_password")
+      .trim()
+      .isStrongPassword({
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+      .withMessage("Password does not meet requirements."),
+  ];
+}
+
 //Check data and return errors or continue to registration
 
 validate.checkRegData = async (req, res, next) => {
@@ -70,5 +91,24 @@ validate.checkRegData = async (req, res, next) => {
   }
   next();
 };
+
+validate.checkLoginData = async (req, res, next) => {
+  const { cliient_email, client_password} = req.body;
+  let errors = [];
+  errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    res.render("../views/clients/login", {
+      errors,
+      message: null,
+      title: "Login",
+      nav,
+      cliient_email,
+      client_password
+    });
+    return
+  }
+  next();
+}
 
 module.exports = validate;

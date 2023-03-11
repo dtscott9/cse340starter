@@ -1,6 +1,8 @@
 const utilities = require("../utilities");
 const bcrypt = require("bcryptjs");
 const accModel = require("../models/account-model");
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 /* ****************************************
  *  Deliver login view
  **************************************** */
@@ -73,4 +75,49 @@ async function registerClient(req, res) {
   }
 }
 
-module.exports = { buildLogin, buildRegister, registerClient };
+/* ****************************************
+ *  Process login request
+ * ************************************ */
+async function loginClient(req, res) {
+  let nav = await utilities.getNav()
+  const { client_email, client_password } = req.body
+  const clientData = await accModel.getClientByEmail(client_email)
+  res.locals.email = client_email;
+  if (!clientData) {
+    const message = "Please check your credentials and try again."
+    res.status(400).render("clients/login", {
+      title: "Login",
+      nav,
+      message,
+      errors: null,
+      client_email,
+    })
+    return
+  }
+  try {
+    if (await bcrypt.compare(client_password, clientData.client_password)) {
+      delete clientData.client_password
+      const accessToken = jwt.sign(clientData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
+      let user = {name: clientData.client_firstname, type: clientData.client_type};
+      res.cookie("jwt", accessToken, { httpOnly: true })
+      return res.redirect("/client/")
+    }
+  } catch (error) {
+    return res.status(403).send('Access Forbidden')
+  }
+}
+
+//Logged in View
+
+async function buildLoggedIn(req, res, next) {
+  let nav = await utilities.getNav();
+  res.render("clients/loggedIn.ejs", {
+    title: "Account Management",
+    nav,
+    message: "Logged in",
+    errors: null
+  });
+}
+
+
+module.exports = { buildLogin, buildRegister, registerClient, loginClient, buildLoggedIn };

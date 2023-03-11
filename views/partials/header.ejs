@@ -6,6 +6,10 @@
   >
 
   <div id="tools">
+    <% if(!locals.loggedin) { %>
     <span class="accountLink"><a href="/client/login">My Account</a></span>
+    <% } else { %>
+    <span class="accountLink"><a href="/client/logout">Logout</a></span>
+   <% } %>
   </div>
 </header>

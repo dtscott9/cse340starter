@@ -11,12 +11,17 @@ const app = express();
 const expressLayouts = require("express-ejs-layouts");
 const baseController = require("./controllers/baseController");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const utilities = require("./utilities");
+
 
 /* ***********************
  * Middleware
  *************************/
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(cookieParser())
+app.use(utilities.checkClientLogin)
 
 /* ***********************
  * View Engine and Templates
@@ -30,10 +35,7 @@ app.set("layout", "./layouts/layout"); // not at views root
  *************************/
 app.use(require("./routes/static"));
 
-//Index Route
-// app.get("/", function(req, res) {
-//   res.render("index", {title: "Home"})
-// })
+// Index route
 app.get("/", baseController.buildHome);
 
 // Inventory routes

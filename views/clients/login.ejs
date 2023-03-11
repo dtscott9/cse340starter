@@ -4,10 +4,10 @@
 <p class="notice"><%= message %></p>
 <% } %>
 
-<form class="login" action="#" method="post">
-  <label for="client_user">Username</label>
-  <input type="text" name="client_username" id="client_user" required />
-  <label for="client_password" id="client_password">Password</label>
+<form class="login" action="/client/loggedIn" method="post">
+  <label for="client_email">Email </label>
+  <input type="text" name="client_email" id="client_email" value="<%= locals.client_email %>" required />
+  <label for="client_password" >Password</label>
   <div id="passwdRules">
     Please include at least 12 characters, with one uppercase character, 1
     special character, and 1 nubmer
@@ -17,6 +17,7 @@
     name="client_password"
     id="client_password"
     pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+    value="<%= locals.client_password %>"
     required
   />
   <input class="submit" type="submit" />
