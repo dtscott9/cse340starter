@@ -5,7 +5,7 @@ const util = require("../utilities");
 const accController = require("../controllers/accountController.js");
 
 
-router.get("/login", accController.buildLogin);
+router.get("/login", util.handleErrors(accController.buildLogin));
 // Process the login request
 router.post(
   "/loggedIn",
@@ -13,15 +13,15 @@ router.post(
   regValidate.checkLoginData,
   accController.loginClient
 );
-router.get("/registration", accController.buildRegister);
+router.get("/registration", util.handleErrors(accController.buildRegister));
 router.post(
   "/register",
   regValidate.registationRules(),
   regValidate.checkRegData,
-  accController.registerClient
+  util.handleErrors(accController.registerClient)
 );
 
-router.get("/", util.checkJWTToken, accController.buildLoggedIn);
+router.get("/", util.checkJWTToken, util.handleErrors(accController.buildLoggedIn));
 
 router.get("/logout", util.logOut);
 
