@@ -219,6 +219,13 @@ form{
   padding: 1em;
   color: white;
   border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 250px) {
+  form{
+    width: 100%;
+  }
 }
 
 form a {
@@ -277,6 +284,30 @@ select {
   border-radius: 15px;
   width: 25%;
   text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.modify{
+  color: white;
+  background-color: green;
+  padding: 1px;
+  border-radius: 15px;
+  width: 15%;
+  text-align: center;
+  margin-bottom: 15px;
+  text-decoration: none;
+}
+
+.delete{
+  color: white;
+  background-color: rgb(198, 4, 4);
+  padding: 1px;
+  border-radius: 15px;
+  width: 15%;
+  text-align: center;
+  margin-bottom: 15px;
+  text-decoration: none;
 }
 
 @media screen and (min-width: 750px) {

@@ -1,0 +1,94 @@
+<% if (errors) { %>
+    <ul class="notice">
+      <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+    <% } %> <% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else { res.redirect('/') } %> <% if (message) { %>
+    <p class="notice"><%= message %></p>
+    <% } %>
+    
+    <form action="/inv/deleted" method="post">
+      <label>Classification</label>
+      <%- menu %>
+      <label for="inv_make">Make</label>
+      <input
+      readonly
+        name="inv_make"
+        id="inv_make"
+        type="text"
+        value="<%= locals.inv_make %>"
+        required
+      />
+      <label for="inv_model">Model</label>
+      <input readonly
+        name="inv_model"
+        id="inv_model"
+        type="text"
+        value="<%= locals.inv_model %>"
+        required
+      />
+      <label for="inv_year">Year</label>
+      <input readonly
+        name="inv_year"
+        id="inv_year"
+        type="number"
+        pattern="[0-9]{4}"
+        value="<%= locals.inv_year %>"
+        required
+      />
+      <label for="inv_description">Vehicle Description</label>
+      <textarea readonly name="inv_description" id="inv_description" type="text" required>
+    <%= locals.inv_description %></textarea
+      >
+      <label for="inv_image">Image path</label>
+      <input readonly
+        name="inv_image"
+        id="inv_image"
+        type="text"
+        value="/images/vehicles/no-image.png"
+        required
+        value="<%= locals.inv_image %>"
+      />
+      <label for="inv_thumbnail">Thumbnail path</label>
+      <input readonly
+        name="inv_thumbnail"
+        id="inv_thumbnail"
+        type="text"
+        value="/images/vehicles/no-image-tn.png"
+        value="<%= locals.inv_thumbnail %>"
+        required
+      />
+      <label for="inv_price">Price</label>
+      <input readonly
+        name="inv_price"
+        id="inv_price"
+        type="number"
+        value="<%= locals.inv_price %>"
+        required
+      />
+      <label for="inv_miles">Miles</label>
+      <input readonly
+        name="inv_miles"
+        id="inv_miles"
+        type="number"
+        value="<%= locals.inv_miles %>"
+        required
+      />
+      <label for="in_color">Color</label>
+      <input readonly
+        name="in_color"
+        id="in_color"
+        type="text"
+        value="<%= locals.in_color %>"
+        required
+      />
+      <input type="hidden" name="inv_id"
+        <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+        <% } %>>
+      <p>Confirm Deletion - The delete is permanent.</p> 
+      <input type="submit" class="submit" value="Delete Vehicle" />
+    </form>
+    

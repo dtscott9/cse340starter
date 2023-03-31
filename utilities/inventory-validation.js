@@ -41,6 +41,7 @@ invValidate.checkClassData = async (req, res, next) => {
 invValidate.inventoryRules = () => {
   return [
     // Must be all one word with no spaces or special characters
+    // Make sure that when querying to delete, you don't have .escape()
     body("inv_make")
       .trim()
       .escape()
@@ -83,6 +84,48 @@ invValidate.inventoryRules = () => {
       .isLength({min: 1})
       .withMessage("Please enter the color of the vehicle."),
   ];
+};
+
+invValidate.checkUpdateData = async (req, res, next) => {
+  const {
+    inv_id,
+    classification_id,
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    in_color,
+  } = req.body;
+  let errors = [];
+  errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    let menu = await utilities.stickySelect(classification_id);
+    res.render("../views/inventory/edit-vehicle", {
+      errors,
+      message: null,
+      title: `Edit ${inv_make} ${inv_model}`,
+      inv_id,
+      nav,
+      menu,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      in_color,
+    });
+
+    return;
+  }
+  next();
 };
 
 invValidate.checkInvData = async (req, res, next) => {

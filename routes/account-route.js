@@ -25,5 +25,11 @@ router.get("/", util.checkJWTToken, util.handleErrors(accController.buildLoggedI
 
 router.get("/logout", util.logOut);
 
+router.get("/editAccount/:client_id", accController.buildEditAccountView)
+
+router.post("/updateAccount", regValidate.updateAccRules(), regValidate.checkUpdData, accController.updateAccount )
+
+router.post("/changePassword", regValidate.changePassRules(), accController.changePassword )
+
 module.exports = router;
 

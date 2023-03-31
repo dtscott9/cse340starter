@@ -6,9 +6,12 @@
 
     <% if(locals.clientData.client_type == 'Client') { %>
         <h1>Welcome <%= locals.clientData.client_firstname %></h1>
+        <a href="../../client/editAccount/<%= locals.clientData.client_id %>" class="addButton">Update Account Information</a>
         <% } 
-        else if(locals.type == 'Employee' || 'Admin') { %>
+        else if(locals.clientData.client_type == 'Employee' || 'Admin') { %>
         <h2>Welcome <%= locals.clientData.client_firstname %></h2>
+        <a href="../../client/editAccount/<%= locals.clientData.client_id %>" class="addButton">Update Account Information</a>
         <h3>Inventory Management</h3>
         <p><a href="../../inv/">Click here</a></p>
        <% } %>
+       
